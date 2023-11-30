@@ -1,0 +1,16 @@
+<IfModule dir_module>
+    DirectoryIndex index.php
+</IfModule>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# ЗАПРЕЩЁННЫЕ ФАЙЛЫ
+RewriteRule .htaccess - [F]
+RewriteRule template.php - [F]
+
+# ПРАВИЛА mod_rewrite
+RewriteRule page/([a-z0-9_-]+)([\/]{0,1})\.htm$ index.php?option=page&alias=$1 [L]
